@@ -1,0 +1,207 @@
+.linearRoot {
+  --shell-bg: #08090a;
+  --shell-panel: #0f1011;
+  --shell-panel-strong: #141517;
+  --shell-border: rgba(255, 255, 255, 0.08);
+  --shell-border-strong: rgba(255, 255, 255, 0.12);
+  --shell-text: #f3f4f6;
+  --shell-muted: rgba(243, 244, 246, 0.66);
+  --shell-subtle: rgba(243, 244, 246, 0.42);
+  --shell-accent: #5e6ad2;
+  --shell-accent-soft: rgba(94, 106, 210, 0.16);
+
+  padding: 8px;
+  color: var(--shell-text);
+}
+
+.linearHero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: 22px;
+  background: radial-gradient(circle at top right, rgba(94, 106, 210, 0.24), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(127, 86, 217, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(16, 17, 19, 0.98) 0%, rgba(12, 13, 15, 1) 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset, 0 24px 56px rgba(0, 0, 0, 0.34);
+}
+
+.linearHeroBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 28px 28px 24px;
+}
+
+.linearHeroHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.linearBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--shell-border-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--shell-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.linearStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.linearTitleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.linearTitle {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+
+.linearTitleMeta {
+  color: var(--shell-muted);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.linearTagline {
+  color: #f8fafc;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.linearDescription {
+  max-width: 880px;
+  margin-top: 10px;
+  color: var(--shell-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.linearApiRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.linearApiCode {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--shell-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--shell-subtle);
+  font-size: 12px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+.linearHealth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+}
+
+.linearMetrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.linearMetricCard {
+  border: 1px solid var(--shell-border);
+  border-radius: 18px;
+  background: var(--shell-panel);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 14px 34px rgba(0, 0, 0, 0.22);
+  padding: 18px 18px 16px;
+}
+
+.linearMetricLabel {
+  color: var(--shell-subtle);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.linearMetricValue {
+  margin-top: 8px;
+  color: #f8fafc;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.linearMetricHint {
+  margin-top: 8px;
+  color: var(--shell-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.linearChildren {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 1280px) {
+  .linearMetrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .linearHeroBody {
+    grid-template-columns: 1fr;
+  }
+
+  .linearHealth {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .linearRoot {
+    padding: 0;
+  }
+
+  .linearHeroBody {
+    padding: 22px 18px 18px;
+  }
+
+  .linearTitle {
+    font-size: 26px;
+  }
+
+  .linearMetrics {
+    grid-template-columns: 1fr;
+  }
+}

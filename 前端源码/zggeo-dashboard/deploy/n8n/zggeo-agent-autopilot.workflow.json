@@ -1,0 +1,582 @@
+{
+  "id": "zggeo-agent-autopilot",
+  "name": "ZGEO Agent 自动运作 - 定时巡检与节点回调",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "f9d6a0db-7d3a-4fe6-9c7b-4a42fe586a5c",
+      "name": "每小时定时触发",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1060,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b2896f13-bc85-4ec7-9ef2-e86519723a7a",
+      "name": "手动触发测试",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ai-service:8010/agent/workflows/n8n-events",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event",
+              "value": "schedule_triggered"
+            },
+            {
+              "name": "workflow_id",
+              "value": "zggeo-agent-autopilot"
+            },
+            {
+              "name": "workflow_name",
+              "value": "ZGEO Agent 自动运作 - 定时巡检与节点回调"
+            },
+            {
+              "name": "node_name",
+              "value": "每小时定时触发 / 手动触发测试"
+            },
+            {
+              "name": "status",
+              "value": "running"
+            },
+            {
+              "name": "detail",
+              "value": "n8n 定时器已启动，准备调用 ZGEO 到期巡检队列。"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', triggered_at: $now.toISO() } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "6c1e0b9f-9870-4cb6-9111-6ee60a7f77d4",
+      "name": "回调 n8n：触发器已启动",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -800,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ai-service:8010/agent/workflows/inspect-due",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "ed594214-3f70-43f1-bd32-2f522fbc093c",
+      "name": "调用 ZGEO 到期巡检队列",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -520,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ai-service:8010/agent/workflows/n8n-events",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event",
+              "value": "inspect_due_called"
+            },
+            {
+              "name": "workflow_id",
+              "value": "zggeo-agent-autopilot"
+            },
+            {
+              "name": "workflow_name",
+              "value": "ZGEO Agent 自动运作 - 定时巡检与节点回调"
+            },
+            {
+              "name": "node_name",
+              "value": "调用 ZGEO 到期巡检队列"
+            },
+            {
+              "name": "status",
+              "value": "completed"
+            },
+            {
+              "name": "detail",
+              "value": "={{ '到期巡检队列调用完成，入队 ' + ($json.queued || 0) + ' 个客户项目。' }}"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', queued: $json.queued || 0, note: $json.note, runs: ($json.runs || []).map((run) => ({ id: run.id, project_name: run.project_name, domain: run.domain })) } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "993551a0-1b48-4497-9856-157d4d1f80fc",
+      "name": "回调 n8n：队列接口完成",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        -60
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "jsCode": "const runs = $json.runs || [];\nreturn runs.map((run) => ({ json: run }));"
+      },
+      "id": "fdde1dc5-09f1-4324-a212-53e0fd79cad5",
+      "name": "拆分到期工作流",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://ai-service:8010/agent/workflows/{{$json.id}}/n8n-callback",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "step_key",
+              "value": "recheck"
+            },
+            {
+              "name": "status",
+              "value": "running"
+            },
+            {
+              "name": "detail",
+              "value": "n8n 节点回调：巡检任务已入队，正在交给 ZGEO 后端执行。"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', node: '回调 ZGEO：巡检已入队', event: 'inspection_queued', run_id: $json.id, project_name: $json.project_name, domain: $json.domain, next_run_at: $json.next_run_at } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "1e1fb4f4-c7d0-49e0-83ad-23c4539ae46d",
+      "name": "回调 ZGEO：巡检已入队",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://ai-service:8010/agent/workflows/{{$json.id}}/n8n-callback",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "step_key",
+              "value": "recheck"
+            },
+            {
+              "name": "status",
+              "value": "running"
+            },
+            {
+              "name": "detail",
+              "value": "n8n 节点回调：已进入等待窗口，稍后读取 ZGEO 巡检结果。"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', node: '回调 ZGEO：等待巡检结果', event: 'inspection_waiting', run_id: $json.id, project_name: $json.project_name, domain: $json.domain } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "35da9b9a-ae2a-4c24-9f1c-cd64a78f3d61",
+      "name": "回调 ZGEO：等待巡检结果",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "amount": 90,
+        "unit": "seconds"
+      },
+      "id": "ce38662d-35c0-4d58-bc50-75a60e529d34",
+      "name": "等待后端巡检完成",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        600,
+        180
+      ],
+      "webhookId": "zggeo-agent-autopilot-wait"
+    },
+    {
+      "parameters": {
+        "url": "=http://ai-service:8010/agent/workflows/{{$json.id}}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "2c19f25c-cc77-463e-aae4-1c7369ef6d45",
+      "name": "读取 ZGEO 工作流状态",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ai-service:8010/agent/workflows/n8n-events",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event",
+              "value": "workflow_state_read"
+            },
+            {
+              "name": "workflow_id",
+              "value": "zggeo-agent-autopilot"
+            },
+            {
+              "name": "workflow_name",
+              "value": "ZGEO Agent 自动运作 - 定时巡检与节点回调"
+            },
+            {
+              "name": "node_name",
+              "value": "读取 ZGEO 工作流状态"
+            },
+            {
+              "name": "status",
+              "value": "completed"
+            },
+            {
+              "name": "detail",
+              "value": "={{ '已读取客户项目状态：' + ($json.project_name || '-') + ' / ' + ($json.status || '-') }}"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', run_id: $json.id, project_name: $json.project_name, domain: $json.domain, workflow_status: $json.status, recheck_status: ($json.steps || []).find((step) => step.step_key === 'recheck')?.status || null } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "9f6d9f3a-6ee2-4c68-9461-e4c0aefb9612",
+      "name": "回调 n8n：状态读取完成",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        20
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://ai-service:8010/agent/workflows/{{$json.id}}/n8n-callback",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "step_key",
+              "value": "recheck"
+            },
+            {
+              "name": "status",
+              "value": "={{ ($json.steps || []).find((step) => step.step_key === 'recheck')?.status || $json.status || 'completed' }}"
+            },
+            {
+              "name": "detail",
+              "value": "={{ $json.summary || 'n8n 节点回调：已确认 ZGEO 巡检结果。' }}"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', node: '回调 ZGEO：巡检结果确认', event: 'inspection_confirmed', run_id: $json.id, project_name: $json.project_name, domain: $json.domain, workflow_status: $json.status, last_inspection: $json.last_inspection || null } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "e59b0058-52fa-4e74-96f2-ea0bd592426a",
+      "name": "回调 ZGEO：巡检结果确认",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ai-service:8010/agent/workflows/n8n-events",
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event",
+              "value": "result_callback_sent"
+            },
+            {
+              "name": "workflow_id",
+              "value": "zggeo-agent-autopilot"
+            },
+            {
+              "name": "workflow_name",
+              "value": "ZGEO Agent 自动运作 - 定时巡检与节点回调"
+            },
+            {
+              "name": "node_name",
+              "value": "回调 ZGEO：巡检结果确认"
+            },
+            {
+              "name": "status",
+              "value": "completed"
+            },
+            {
+              "name": "detail",
+              "value": "={{ '结果回调已写回 ZGEO：' + ($json.project_name || '-') }}"
+            },
+            {
+              "name": "payload",
+              "value": "={{ { source: 'n8n-agent-autopilot', run_id: $json.id, project_name: $json.project_name, domain: $json.domain, n8n_status: $json.n8n_status } }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "6fbf51be-38e6-448d-8aac-8f97bc7557f8",
+      "name": "回调 n8n：结果回写完成",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "connections": {
+    "每小时定时触发": {
+      "main": [
+        [
+          {
+            "node": "回调 n8n：触发器已启动",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "手动触发测试": {
+      "main": [
+        [
+          {
+            "node": "回调 n8n：触发器已启动",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回调 n8n：触发器已启动": {
+      "main": [
+        [
+          {
+            "node": "调用 ZGEO 到期巡检队列",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "调用 ZGEO 到期巡检队列": {
+      "main": [
+        [
+          {
+            "node": "回调 n8n：队列接口完成",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "拆分到期工作流",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拆分到期工作流": {
+      "main": [
+        [
+          {
+            "node": "回调 ZGEO：巡检已入队",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回调 ZGEO：巡检已入队": {
+      "main": [
+        [
+          {
+            "node": "回调 ZGEO：等待巡检结果",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回调 ZGEO：等待巡检结果": {
+      "main": [
+        [
+          {
+            "node": "等待后端巡检完成",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "等待后端巡检完成": {
+      "main": [
+        [
+          {
+            "node": "读取 ZGEO 工作流状态",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "读取 ZGEO 工作流状态": {
+      "main": [
+        [
+          {
+            "node": "回调 n8n：状态读取完成",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "回调 ZGEO：巡检结果确认",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回调 ZGEO：巡检结果确认": {
+      "main": [
+        [
+          {
+            "node": "回调 n8n：结果回写完成",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

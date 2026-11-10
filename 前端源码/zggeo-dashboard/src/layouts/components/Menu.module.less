@@ -1,0 +1,435 @@
+.menuPanel,
+.menuPanel2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: 14px 12px 12px;
+  background: radial-gradient(circle at top, rgba(94, 106, 210, 0.16), transparent 34%),
+    linear-gradient(180deg, #0d0f15 0%, #090b10 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.02);
+  transition: width 0.2s ease, padding 0.2s ease;
+
+  :global {
+    .t-menu,
+    .t-default-menu {
+      height: 100%;
+      color: #b6bbcf;
+      background: transparent;
+    }
+
+    .t-default-menu__inner {
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .t-menu--scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+      padding-right: 2px;
+    }
+
+    .t-menu__logo {
+      width: 100% !important;
+      min-height: 150px;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      padding: 8px 8px 44px !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 22px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .t-menu__item,
+    .t-submenu__title {
+      min-height: 42px;
+      margin-bottom: 6px;
+      border-radius: 14px;
+      color: #a8aec4;
+      transition: all 0.18s ease;
+    }
+
+    .t-menu__item:hover,
+    .t-submenu__title:hover,
+    .t-menu__item:not(.t-is-active):hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .t-menu__item.t-is-active:not(.t-is-opened),
+    .t-submenu__title.t-is-active,
+    .t-menu__item.t-is-opened {
+      color: #f8fafc;
+      background: linear-gradient(135deg, rgba(94, 106, 210, 0.2), rgba(94, 106, 210, 0.1));
+      box-shadow: inset 0 0 0 1px rgba(94, 106, 210, 0.26);
+    }
+
+    .t-menu__item .t-icon,
+    .t-submenu__title .t-icon {
+      color: inherit;
+    }
+
+    .t-submenu .t-menu__item {
+      min-height: 38px;
+      margin-left: 8px;
+      padding-left: 14px !important;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .t-submenu .t-submenu .t-menu__item {
+      position: relative;
+      min-height: 34px;
+      margin-left: 24px;
+      padding-left: 18px !important;
+      color: #9fb0cf;
+      font-size: 13px;
+      background: rgba(116, 132, 190, 0.035);
+    }
+
+    .t-submenu .t-submenu .t-menu__item::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 9px;
+      bottom: 9px;
+      width: 2px;
+      border-radius: 999px;
+      background: rgba(126, 144, 214, 0.36);
+    }
+
+    .t-submenu .t-submenu .t-menu__item:hover {
+      color: #d7e0f5;
+      background: rgba(116, 132, 190, 0.09);
+    }
+
+    .t-submenu .t-submenu .t-menu__item.t-is-active {
+      color: #f8fafc;
+      background: linear-gradient(135deg, rgba(94, 106, 210, 0.18), rgba(94, 106, 210, 0.08));
+    }
+
+    .t-submenu__content {
+      padding-top: 2px;
+      padding-bottom: 8px;
+      background: transparent;
+    }
+
+    .t-menu__operations {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  }
+}
+
+.menuCollapsed {
+  padding: 14px 0 12px;
+  overflow: visible;
+
+  :global {
+    .t-default-menu__inner {
+      align-items: center;
+      overflow: visible;
+    }
+
+    .t-menu__logo {
+      min-height: 70px;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 4px 0 18px !important;
+      margin-bottom: 14px;
+      overflow: visible;
+    }
+
+    .t-menu--scroll {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: visible;
+      scrollbar-width: none;
+    }
+
+    .t-menu--scroll::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .t-menu__item,
+    .t-submenu__title {
+      width: 48px;
+      min-width: 48px;
+      max-width: 48px;
+      height: 48px;
+      min-height: 48px;
+      box-sizing: border-box;
+      margin: 0 auto 8px !important;
+      padding: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+      overflow: visible;
+      text-align: center;
+      transform: none;
+      left: auto;
+      right: auto;
+    }
+
+    .t-menu--scroll > .t-menu__item,
+    .t-menu--scroll > .t-submenu > .t-menu__item,
+    .t-menu--scroll > .t-submenu > .t-submenu__title {
+      position: relative;
+      left: auto !important;
+      right: auto !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .t-submenu {
+      width: 100%;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    .t-submenu > .t-menu__item,
+    .t-submenu > .t-submenu__title {
+      width: 48px !important;
+      min-width: 48px !important;
+      max-width: 48px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding: 0 !important;
+    }
+
+    .t-submenu > .t-menu__item::after {
+      right: -8px;
+    }
+
+    .t-menu__item .t-icon,
+    .t-submenu__title .t-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .t-menu__content,
+    .t-submenu__title span:not(.t-icon) {
+      display: none;
+    }
+
+    .t-menu__item.t-is-active:not(.t-is-opened),
+    .t-submenu__title.t-is-active,
+    .t-menu__item.t-is-opened {
+      background: linear-gradient(135deg, rgba(94, 106, 210, 0.34), rgba(94, 106, 210, 0.16));
+      box-shadow: inset 0 0 0 1px rgba(134, 146, 255, 0.52), 0 10px 24px rgba(51, 61, 150, 0.24);
+    }
+
+    .t-submenu__content {
+      display: none;
+    }
+
+    .t-menu__operations {
+      width: 100%;
+      padding-top: 10px;
+    }
+  }
+}
+
+.menuTip {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: rgba(168, 174, 196, 0.72);
+  font-size: 12px;
+}
+
+.menuLogo {
+  width: 184px;
+  max-width: 100%;
+  margin-left: 0;
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #f8fafc;
+  border-radius: 28px;
+  padding: 16px 18px;
+  background: radial-gradient(circle at top left, rgba(94, 106, 210, 0.18), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 20px 50px rgba(0, 0, 0, 0.22);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(94, 106, 210, 0.28);
+    background: radial-gradient(circle at top left, rgba(94, 106, 210, 0.24), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.034));
+  }
+}
+
+.menuLogoWordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.menuLogoAccent {
+  font-size: 28px;
+  color: #7a7cff;
+  text-transform: lowercase;
+}
+
+.menuLogoText {
+  font-size: 28px;
+  color: #f8fafc;
+  text-transform: lowercase;
+}
+
+.menuLogoBrand {
+  margin-left: 10px;
+  font-size: 26px;
+  font-weight: 500;
+  color: rgba(248, 250, 252, 0.76);
+}
+
+.menuLogoSubtitle {
+  margin-top: 12px;
+  padding-left: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgba(248, 250, 252, 0.9);
+}
+
+@media (max-width: 768px) {
+  .menuPanel,
+  .menuPanel2 {
+    width: 64px !important;
+    flex: 0 0 64px !important;
+    padding: 10px 0;
+
+    :global {
+      .t-menu__logo {
+        min-height: 58px;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 4px 0 14px !important;
+        margin-bottom: 10px;
+        overflow: visible;
+      }
+
+      .t-menu--scroll {
+        width: 100%;
+        padding: 0;
+        overflow-x: hidden;
+        scrollbar-width: none;
+      }
+
+      .t-menu--scroll::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      .t-menu__item,
+      .t-submenu__title {
+        width: 44px !important;
+        min-width: 44px !important;
+        max-width: 44px !important;
+        height: 44px;
+        min-height: 44px;
+        margin: 0 auto 8px !important;
+        padding: 0 !important;
+        justify-content: center;
+        border-radius: 14px;
+      }
+
+      .t-menu__item .t-icon,
+      .t-submenu__title .t-icon {
+        width: 20px;
+        height: 20px;
+        margin: 0 !important;
+        font-size: 20px;
+      }
+
+      .t-menu__content,
+      .t-submenu__title span:not(.t-icon),
+      .t-submenu__content {
+        display: none;
+      }
+
+      .t-menu__operations {
+        padding-top: 8px;
+      }
+    }
+  }
+
+  .menuLogo {
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    align-items: center;
+    border-radius: 14px;
+  }
+
+  .menuLogoWordmark {
+    justify-content: center;
+  }
+
+  .menuLogoAccent {
+    font-size: 20px;
+  }
+
+  .menuLogoText,
+  .menuLogoBrand,
+  .menuLogoSubtitle,
+  .menuTip {
+    display: none;
+  }
+}
+
+.menuLogoMeta {
+  margin-top: 10px;
+  padding-left: 2px;
+  font-size: 13px;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.48);
+}
+
+.menuLogoMini {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: radial-gradient(circle at top left, rgba(94, 106, 210, 0.24), transparent 44%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.menuLogoMiniAccent {
+  font-size: 22px;
+  font-weight: 700;
+  color: #7a7cff;
+  text-transform: lowercase;
+}

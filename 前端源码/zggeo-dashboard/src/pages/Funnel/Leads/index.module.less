@@ -1,0 +1,115 @@
+.page {
+  padding: 16px 8px;
+  min-width: 0;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.toolbar {
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterGroup,
+.actionGroup {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filterGroup {
+  flex: 1 1 420px;
+}
+
+.actionGroup {
+  flex: 0 1 auto;
+  justify-content: flex-end;
+}
+
+.searchInput {
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+.statusSelect {
+  flex: 0 0 140px;
+}
+
+.sourceTag {
+  max-width: min(360px, 42vw);
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.refreshButton {
+  flex: 0 0 auto;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: visible;
+}
+
+@media (max-width: 1100px) {
+  .toolbar {
+    align-items: stretch;
+  }
+
+  .filterGroup,
+  .actionGroup {
+    width: 100%;
+  }
+
+  .actionGroup {
+    justify-content: space-between;
+  }
+
+  .sourceTag {
+    max-width: calc(100% - 104px);
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 12px 0;
+  }
+
+  .statsRow {
+    gap: 18px 28px;
+  }
+
+  .filterGroup,
+  .actionGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput,
+  .statusSelect,
+  .refreshButton {
+    width: 100%;
+    max-width: none;
+    flex-basis: auto;
+  }
+
+  .sourceTag {
+    max-width: 100%;
+    justify-content: center;
+  }
+}

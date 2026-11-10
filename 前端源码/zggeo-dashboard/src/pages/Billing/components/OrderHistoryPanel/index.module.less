@@ -1,0 +1,55 @@
+.card {
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.statusTabs {
+  min-width: 0;
+  flex: 1;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.typeFilter {
+  width: 160px;
+}
+
+.tenantFilter {
+  width: 220px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  border: 1px dashed var(--td-component-border);
+  border-radius: 8px;
+  background: #fafafa;
+  color: var(--td-text-color-secondary);
+}
+
+@media (max-width: 960px) {
+  .toolbar,
+  .filters {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .typeFilter,
+  .tenantFilter {
+    width: 100%;
+  }
+}

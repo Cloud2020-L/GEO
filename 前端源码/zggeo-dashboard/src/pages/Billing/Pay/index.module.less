@@ -1,0 +1,141 @@
+.page {
+  padding: 16px;
+}
+
+.hero {
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.hero :global(.t-card__body) {
+  padding: 22px 28px;
+}
+
+.heroMain {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(620px, 900px);
+  gap: 24px;
+  align-items: center;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--td-component-border);
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.metric > span {
+  display: block;
+  overflow: hidden;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric > strong {
+  display: block;
+  margin-top: 6px;
+  overflow: hidden;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric_primary {
+  border-color: #d9e6ff;
+  background: #f6f9ff;
+}
+
+.metric_primary > strong {
+  color: #366ef4;
+}
+
+.metric_success {
+  border-color: #c6f3df;
+  background: #f1fff7;
+}
+
+.metric_success > strong {
+  color: #008858;
+}
+
+.metric_warning {
+  border-color: #ffe8c2;
+  background: #fffaf1;
+}
+
+.metric_warning > strong {
+  color: #b65b00;
+}
+
+.opsGrid,
+.singleGrid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.opsGrid {
+  grid-template-columns: minmax(520px, 1.35fr) minmax(360px, 0.65fr);
+  align-items: stretch;
+}
+
+.singleGrid {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 1280px) {
+  .heroMain,
+  .opsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}

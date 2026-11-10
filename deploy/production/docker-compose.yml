@@ -1,0 +1,108 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-zggeo}
+      POSTGRES_USER: ${POSTGRES_USER:-zggeo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/production/.env.production}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-zggeo} -d ${POSTGRES_DB:-zggeo}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - zggeo_internal
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.6
+    restart: unless-stopped
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - zggeo_internal
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    networks:
+      - zggeo_internal
+
+  ai-service:
+    image: ${AI_SERVICE_IMAGE:-zggeo-ai-service:${ZGEO_RELEASE_VERSION:-latest}}
+    build:
+      context: ../../后端源码/ai-service
+    restart: unless-stopped
+    env_file:
+      - ${ZGEO_ENV_FILE:-./.env.production}
+    environment:
+      POSTGRES_DSN: postgresql://${POSTGRES_USER:-zggeo}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-zggeo}
+      QDRANT_URL: http://qdrant:6333
+      REDIS_URL: redis://redis:6379/0
+      TASK_QUEUE_BACKEND: redis
+      ENABLE_HTTPS_REDIRECT: "false"
+      FORWARDED_ALLOW_IPS: "*"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+      redis:
+        condition: service_started
+    expose:
+      - "8010"
+    networks:
+      - zggeo_internal
+
+  ai-worker:
+    image: ${AI_SERVICE_IMAGE:-zggeo-ai-service:${ZGEO_RELEASE_VERSION:-latest}}
+    build:
+      context: ../../后端源码/ai-service
+    restart: unless-stopped
+    env_file:
+      - ${ZGEO_ENV_FILE:-./.env.production}
+    environment:
+      POSTGRES_DSN: postgresql://${POSTGRES_USER:-zggeo}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-zggeo}
+      QDRANT_URL: http://qdrant:6333
+      REDIS_URL: redis://redis:6379/0
+      TASK_QUEUE_BACKEND: redis
+    command: ["sh", "-c", "rq worker ${TASK_QUEUE_REDIS_QUEUE:-zggeo} --url ${REDIS_URL:-redis://redis:6379/0}"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      qdrant:
+        condition: service_started
+    networks:
+      - zggeo_internal
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      - ai-service
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./current/admin:/usr/share/nginx/html/admin:ro
+      - ./current/client:/usr/share/nginx/html/client:ro
+      - ./certs:/etc/letsencrypt:ro
+    networks:
+      - zggeo_internal
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  redis_data:
+
+networks:
+  zggeo_internal:
+    driver: bridge

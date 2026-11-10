@@ -1,0 +1,87 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.log
+*.pid
+
+# Local secrets and data dumps
+.env
+.env.*
+!.env.example
+!.env.*.example
+!后端源码/ai-service/.env.example
+!后端源码/ai-service/.env.production.example
+!deploy/production/.env.production.example
+!前端源码/zggeo-dashboard/.env.admin.example
+!前端源码/zggeo-dashboard/.env.client.example
+!前端源码/zggeo-dashboard/.env.development.example
+!前端源码/zggeo-dashboard/.env.site.example
+*密钥*
+*.dump
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.backup
+backups/
+*.psql
+
+# Python
+.venv/
+.venv-local/
+venv/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+/coverage/
+*.tar.gz
+
+# Editor and local service state
+.idea/
+.vscode/
+.vercel/
+.codex-run-logs/
+.local/
+/logs/
+后端源码/ai-service/.data/
+
+# Production deploy local state
+deploy/production/.env.production
+deploy/production/data/
+deploy/production/certs/
+deploy/production/backups/
+deploy/production/releases/
+deploy/production/current/
+deploy/production/current-frontend-release
+deploy/production/current-backend-release
+
+# Private documents and machine-specific launch configuration
+/账号管理/
+/启动配置/
+**/项目记忆.md
+/云端上线差距分析.md
+/双门户架构问题分析.md
+/文件功能说明+上线问题.md
+/实际问题纪要.md
+/品牌知识库-竞品情报库-落地方案.md
+
+# Keys, browser sessions, archives, and generated frontend output
+*.pem
+*.key
+*.p12
+*.pfx
+*.har
+*.zip
+*.7z
+id_rsa
+id_ed25519
+credentials.json
+cookies.json
+cookies.txt
+storage-state.json
+storage_state.json
+/前端源码/zggeo-dashboard/dist-admin/
+/前端源码/zggeo-dashboard/dist-client/
+/前端源码/zggeo-dashboard/logs/
+/后端源码/ai-service/logs/

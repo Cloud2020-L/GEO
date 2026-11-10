@@ -1,0 +1,495 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 24px 32px;
+}
+
+.hero,
+.accountCard,
+.packAreaCard,
+.packCard,
+.sectionCard {
+  border-radius: 8px;
+}
+
+.hero {
+  margin-bottom: 0;
+}
+
+.hero :global(.t-card__body) {
+  padding: 22px 28px;
+}
+
+.heroMain {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(520px, 760px);
+  gap: 24px;
+  align-items: center;
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.heroTags {
+  margin-bottom: 12px;
+}
+
+.heroTitle {
+  margin: 0;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.heroSubtitle {
+  margin-top: 10px;
+  overflow: hidden;
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.heroMetrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--td-component-border);
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.metric > span {
+  display: block;
+  overflow: hidden;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric > b {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+  margin-top: 6px;
+  overflow: hidden;
+  color: #1f2937;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric > b > em {
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.metric_primary {
+  border-color: #d9e6ff;
+  background: #f6f9ff;
+}
+
+.metric_primary > b {
+  color: #366ef4;
+}
+
+.metric_danger {
+  border-color: #ffe0e3;
+  background: #fff8f8;
+}
+
+.metric_danger > b {
+  color: #d54941;
+}
+
+.metric_warning {
+  border-color: #ffe8c2;
+  background: #fffaf1;
+}
+
+.metric_warning > b {
+  color: #b65b00;
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(560px, 1.7fr);
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 0;
+}
+
+.topGrid > .accountCard,
+.topGrid > .packAreaCard {
+  align-self: stretch;
+  min-height: 100%;
+}
+
+.accountCard,
+.packAreaCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.accountCard :global(.t-card__body),
+.packAreaCard :global(.t-card__body) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.balanceLabel {
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.balanceValue {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-top: 2px;
+  color: #366ef4;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 44px;
+}
+
+.balanceValue > span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.secondaryBalance {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--td-component-border);
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.secondaryBalance > span {
+  color: var(--td-text-color-secondary);
+}
+
+.secondaryBalance > b {
+  color: #111827;
+  font-size: 18px;
+}
+
+.progress {
+  margin-top: 16px;
+}
+
+.infoRows {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--td-text-color-secondary);
+}
+
+.infoRow > b {
+  color: #111827;
+}
+
+.accountActions {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--td-component-border);
+}
+
+.accountActions :global(.t-button) {
+  min-width: 128px;
+}
+
+.actionHint {
+  margin-top: 8px;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.packBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  min-width: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f3f7ff;
+}
+
+.packHint {
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.packGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.packCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 18px;
+  border: 1px solid #d9e6ff;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.packName {
+  color: #111827;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.packCredits {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-top: 12px;
+  color: #111827;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 40px;
+}
+
+.packCredits > span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.packDescription {
+  min-height: 44px;
+  margin-top: 10px;
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.packFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.sectionCard {
+  position: relative;
+  z-index: 0;
+  margin-top: 0;
+}
+
+.sectionCard + .sectionCard {
+  margin-top: 0;
+}
+
+.pendingOrdersCard {
+  margin-top: 0;
+}
+
+.tabs :global(.t-tabs__content) {
+  padding-top: 16px;
+}
+
+.tableWrap {
+  min-width: 0;
+}
+
+.amountPositive {
+  color: #00a870;
+}
+
+.amountNegative {
+  color: #e34d59;
+}
+
+@media (max-width: 1280px) {
+  .heroMain,
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroMetrics,
+  .packGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.adjustDialog {
+  border-radius: 8px;
+}
+
+.adjustDialog :global(.t-dialog__header) {
+  padding: 28px 32px 10px;
+}
+
+.adjustDialog :global(.t-dialog__body) {
+  padding: 8px 48px 24px;
+}
+
+.adjustDialog :global(.t-dialog__footer) {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: calc(100% - 96px);
+  margin: 4px 48px 40px;
+  padding: 0;
+}
+
+.adjustDialog :global(.t-dialog__footer .t-button) {
+  min-width: 96px;
+}
+
+.adjustDialogBody {
+  display: grid;
+  gap: 22px;
+}
+
+.targetPanel {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid #d9e6ff;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+
+.targetLabel {
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.targetContent {
+  min-width: 0;
+}
+
+.targetContent > strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.targetContent > p {
+  margin: 6px 0 0;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.adjustForm :global(.t-form__item) {
+  margin-bottom: 20px;
+}
+
+.adjustForm :global(.t-form__label) {
+  color: #111827;
+  font-weight: 600;
+}
+
+.amountInput {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.amountInput :global(.t-input-number) {
+  width: 180px;
+}
+
+.amountInput > span {
+  color: var(--td-text-color-secondary);
+}
+
+@media (max-width: 768px) {
+  .adjustDialog {
+    width: calc(100vw - 32px) !important;
+  }
+
+  .adjustDialog :global(.t-dialog__header),
+  .adjustDialog :global(.t-dialog__body),
+  .adjustDialog :global(.t-dialog__footer) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .adjustDialog :global(.t-dialog__footer) {
+    width: calc(100% - 40px);
+    margin: 4px 20px 28px;
+    padding: 0;
+  }
+
+  .targetPanel {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .hero :global(.t-card__body) {
+    padding: 18px;
+  }
+
+  .heroMetrics,
+  .packGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroSubtitle {
+    white-space: normal;
+  }
+
+  .packFooter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

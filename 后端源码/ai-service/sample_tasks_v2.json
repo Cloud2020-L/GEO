@@ -1,0 +1,26 @@
+[
+  {
+    "project_name": "ZGEO Weak Sample",
+    "domain": "weak.zggeo.local",
+    "task_type": "scoring-v2-weak",
+    "keywords": ["AI官网优化", "解决方案展示"],
+    "urls": [],
+    "pasted_text": "我们提供服务，欢迎联系。页面很短，只有一句介绍，没有案例，没有FAQ，没有行业场景，没有团队，没有数据成果，没有安全说明。"
+  },
+  {
+    "project_name": "ZGEO Mid Sample",
+    "domain": "mid.zggeo.local",
+    "task_type": "scoring-v2-mid",
+    "keywords": ["企业智能化改造", "行业解决方案"],
+    "urls": [],
+    "pasted_text": "我们为制造业与园区客户提供行业解决方案，页面包含问题定义、方案、适用对象、实施步骤、部署方式、交付结果和 FAQ。页面展示了 1 个客户案例与部分行业场景，也说明了团队与方法论，但量化数据成果、认证与安全承诺仍不完整。"
+  },
+  {
+    "project_name": "ZGEO Strong Sample",
+    "domain": "strong.zggeo.local",
+    "task_type": "scoring-v2-strong",
+    "keywords": ["AI可见度优化", "GEO", "企业知识检索"],
+    "urls": [],
+    "pasted_text": "我们提供 AI 可见度优化、GEO、企业知识检索与行业解决方案服务。页面结构包括问题定义、方案、适用对象、实施步骤、部署方式、交付结果、常见问题 FAQ 与 CTA。我们展示了客户案例、合作品牌、数据成果、团队介绍、方法论、媒体引用、安全承诺与认证说明，并提供制造业、园区、政务三类场景的量化指标与关键词问答。"
+  }
+]

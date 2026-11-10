@@ -1,0 +1,8 @@
+node_modules
+dist-*.tar.gz
+.git
+*.log
+.DS_Store
+deploy
+docs
+mock

@@ -1,0 +1,70 @@
+.page {
+  padding: 24px;
+  min-width: 0;
+}
+
+.heroHeader,
+.cardActions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.heroHeader > :first-child {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.settingsGrid :global(.t-button) {
+  min-height: 32px;
+}
+
+.tableScroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: visible;
+}
+
+.tableScroll :global(.t-table table) {
+  min-width: 980px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 12px;
+  }
+
+  .heroHeader,
+  .cardActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .heroHeader :global(.t-button),
+  .cardActions :global(.t-button) {
+    width: 100%;
+  }
+
+  .cardActions :global(.t-space) {
+    width: 100%;
+  }
+
+  .cardActions :global(.t-space-item) {
+    flex: 1 1 150px;
+  }
+
+  .cardActions :global(.t-tag),
+  .cardActions :global(.t-button) {
+    width: 100%;
+    justify-content: center;
+  }
+}

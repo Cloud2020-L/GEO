@@ -1,0 +1,205 @@
+.page {
+  padding: 16px;
+}
+
+.hero,
+.planCard,
+.matrixCard {
+  border-radius: 8px;
+}
+
+.hero {
+  margin-bottom: 16px;
+}
+
+.hero :global(.t-card__body) {
+  padding: 22px 28px;
+}
+
+.heroContent {
+  display: grid;
+  gap: 10px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.heroContent h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.heroContent p {
+  margin: 0;
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.planCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 520px;
+}
+
+.activePlanCard {
+  position: relative;
+  border-color: #1d4ed8;
+  background: #f6f9ff;
+  box-shadow:
+    0 0 0 1px #1d4ed8,
+    0 10px 28px rgb(37 99 235 / 22%);
+}
+
+.activePlanCard::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px 0 8px;
+  background: #1d4ed8;
+  content: '';
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.planCard :global(.t-card__body) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 24px 28px;
+}
+
+.planContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.planHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 30px;
+}
+
+.planHeader h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 30px;
+}
+
+.price {
+  min-height: 44px;
+  margin-top: 8px;
+  color: #111827;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 44px;
+}
+
+.quotaRows {
+  display: grid;
+  gap: 12px;
+  min-height: 88px;
+  margin-top: 10px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--td-text-color-secondary);
+  line-height: 22px;
+}
+
+.infoRow > b {
+  color: #111827;
+  white-space: nowrap;
+}
+
+.planAction {
+  min-height: 40px;
+  margin-top: 16px;
+}
+
+.planAction :global(.t-button) {
+  min-width: 100px;
+}
+
+.planSection {
+  margin-top: 14px;
+}
+
+.planSection h3 {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 22px;
+}
+
+.planSection ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #111827;
+  line-height: 22px;
+}
+
+.limitSection {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.limitSection ul {
+  color: var(--td-text-color-secondary);
+}
+
+.matrixCard {
+  margin-top: 20px;
+}
+
+.pendingOrdersCard {
+  margin-top: 20px;
+}
+
+@media (max-width: 1440px) {
+  .planGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .planCard {
+    min-height: auto;
+  }
+}

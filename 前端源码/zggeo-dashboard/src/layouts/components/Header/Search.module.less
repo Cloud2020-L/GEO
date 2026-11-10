@@ -1,0 +1,45 @@
+.panel {
+  width: min(440px, 40vw);
+
+  :global {
+    .t-input {
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 15px;
+      background: rgba(17, 19, 28, 0.9);
+      color: #f8fafc;
+    }
+
+    .t-input:hover {
+      background: rgba(24, 28, 40, 0.96);
+      transition: all var(--td-anim-duration-base) linear;
+    }
+
+    .t-input--focused {
+      border-color: rgba(94, 106, 210, 0.45);
+      box-shadow: 0 0 0 4px rgba(94, 106, 210, 0.12);
+    }
+
+    .t-input__prefix > .t-icon {
+      color: rgba(203, 213, 225, 0.72);
+    }
+
+    .t-input__inner,
+    .t-input__inner::placeholder {
+      color: #f8fafc;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .panel {
+    width: min(180px, 42vw);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .panel {
+    width: min(138px, 36vw);
+  }
+}

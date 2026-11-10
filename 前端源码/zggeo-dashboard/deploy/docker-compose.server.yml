@@ -1,0 +1,89 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: zggeo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: zggeo
+      POSTGRES_USER: zggeo
+      POSTGRES_PASSWORD: zggeo
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:54329:5432"
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: zggeo-qdrant
+    restart: unless-stopped
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    ports:
+      - "127.0.0.1:6333:6333"
+
+  ai-service:
+    build:
+      context: ./Documents/Codex/2026-04-17-new-chat/zggeo-stack-lab/ai-service
+    container_name: zggeo-ai-service
+    restart: unless-stopped
+    environment:
+      POSTGRES_DSN: postgresql://zggeo:zggeo@postgres:5432/zggeo
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: zggeo_pages
+      AI_SERVICE_PORT: 8010
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1-mini}
+      MODEL_DEFAULT_PROVIDER: ${MODEL_DEFAULT_PROVIDER:-openai}
+      MODEL_GATEWAY_TIMEOUT: ${MODEL_GATEWAY_TIMEOUT:-60}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-chat}
+      DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com/v1}
+      MOONSHOT_API_KEY: ${MOONSHOT_API_KEY:-}
+      MOONSHOT_MODEL: ${MOONSHOT_MODEL:-moonshot-v1-8k}
+      MOONSHOT_BASE_URL: ${MOONSHOT_BASE_URL:-https://api.moonshot.cn/v1}
+      ARK_API_KEY: ${ARK_API_KEY:-}
+      DOUBAO_MODEL: ${DOUBAO_MODEL:-}
+      DOUBAO_BASE_URL: ${DOUBAO_BASE_URL:-https://ark.cn-beijing.volces.com/api/v3}
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+      QWEN_MODEL: ${QWEN_MODEL:-qwen-plus}
+      DASHSCOPE_BASE_URL: ${DASHSCOPE_BASE_URL:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY:-}
+    depends_on:
+      - postgres
+      - qdrant
+    ports:
+      - "127.0.0.1:8010:8010"
+
+  dashboard:
+    build:
+      context: ./zggeo-dashboard
+    container_name: zggeo-dashboard
+    restart: unless-stopped
+    depends_on:
+      - ai-service
+    ports:
+      - "127.0.0.1:3003:80"
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: zggeo-n8n
+    restart: unless-stopped
+    depends_on:
+      - ai-service
+    environment:
+      GENERIC_TIMEZONE: Asia/Shanghai
+      TZ: Asia/Shanghai
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+      N8N_HOST: 127.0.0.1
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_PERSONALIZATION_ENABLED: "false"
+      N8N_HIRING_BANNER_ENABLED: "false"
+      N8N_TEMPLATES_ENABLED: "false"
+    volumes:
+      - ./data/n8n:/home/node/.n8n
+      - ./n8n-workflows:/workflows:ro
+    ports:
+      - "127.0.0.1:5678:5678"

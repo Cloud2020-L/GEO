@@ -1,0 +1,39 @@
+.panel {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(94, 106, 210, 0.12), transparent 28%),
+    linear-gradient(180deg, #080a0f 0%, #0f1118 100%);
+
+  :global {
+    .t-menu--scroll::-webkit-scrollbar {
+      width: 8px;
+      background: transparent;
+    }
+
+    .t-menu--scroll::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+      background-color: rgba(148, 163, 184, 0.32);
+    }
+
+    .t-default-menu.t-menu--dark {
+      background: transparent;
+    }
+
+    .t-default-menu:not(.t-menu--dark) .t-menu__item.t-is-active:not(.t-is-opened) {
+      background-color: rgba(94, 106, 210, 0.14);
+      color: #fff;
+
+      .t-icon {
+        color: #fff;
+      }
+    }
+
+    .t-drawer__content,
+    .t-drawer__header {
+      background: #0f1118;
+      color: #f8fafc;
+      border-left-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+}

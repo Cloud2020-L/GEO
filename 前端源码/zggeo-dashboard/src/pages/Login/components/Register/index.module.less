@@ -1,0 +1,158 @@
+.itemContainer {
+  width: 100%;
+  margin-top: 0;
+
+  :global {
+    .t-form__item {
+      margin-bottom: 14px;
+    }
+
+    .t-input {
+      height: 46px;
+      border-radius: 15px;
+      border: 1px solid rgba(148, 163, 184, 0.28) !important;
+      background: rgba(15, 23, 42, 0.52) !important;
+      color: #f8fafc !important;
+      font-size: 15px !important;
+      font-weight: 400;
+      line-height: 22px;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+      transition: border-color 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .t-input:hover {
+      background: rgba(17, 27, 44, 0.72) !important;
+      border-color: rgba(52, 211, 153, 0.52) !important;
+    }
+
+    .t-input:focus-within {
+      background: rgba(17, 27, 44, 0.86) !important;
+      border-color: rgba(52, 211, 153, 0.86) !important;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
+    }
+
+    .t-input input,
+    .t-input__inner,
+    .t-input input:focus,
+    .t-input__inner:focus,
+    .t-input.t-is-focused input,
+    .t-input.t-is-focused .t-input__inner,
+    .t-input--focused input,
+    .t-input--focused .t-input__inner,
+    .t-input--focused input:focus,
+    .t-input--focused .t-input__inner:focus,
+    .t-input.t-is-focused input:focus,
+    .t-input.t-is-focused .t-input__inner:focus,
+    .t-input.t-is-focused .t-input__inner,
+    .t-input--focused .t-input__inner {
+      color: #f8fafc !important;
+      font-size: 15px !important;
+      font-weight: 400 !important;
+      line-height: 22px !important;
+    }
+
+    .t-input__inner:-webkit-autofill,
+    .t-input__inner:-webkit-autofill:hover,
+    .t-input__inner:-webkit-autofill:focus,
+    .t-input__inner:-webkit-autofill:active {
+      caret-color: #f8fafc;
+      font-size: 15px !important;
+      font-weight: 400 !important;
+      line-height: 22px !important;
+      -webkit-text-fill-color: #f8fafc !important;
+      box-shadow: 0 0 0 1000px rgba(17, 27, 44, 0.96) inset !important;
+      transition: background-color 9999s ease-in-out 0s;
+    }
+
+    .t-input input:-webkit-autofill::first-line,
+    .t-input__inner:-webkit-autofill::first-line {
+      color: #f8fafc !important;
+      font-family: inherit !important;
+      font-size: 15px !important;
+      font-weight: 400 !important;
+      line-height: 22px !important;
+    }
+
+    .t-input__inner::placeholder {
+      color: #9aa7bd !important;
+    }
+
+    .t-input__prefix > .t-icon,
+    .t-input__suffix > .t-icon {
+      color: #cbd5e1 !important;
+    }
+
+    .t-button {
+      height: 48px;
+      border-radius: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border: none;
+      box-shadow: 0 18px 34px rgba(16, 185, 129, 0.22);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+    }
+
+    .t-button:hover {
+      filter: brightness(1.04);
+      box-shadow: 0 22px 40px rgba(16, 185, 129, 0.28);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+
+  :global {
+    .t-form__item {
+      min-width: 0;
+    }
+  }
+}
+
+.codeRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 14px;
+  align-items: start;
+
+  :global {
+    .t-button {
+      padding: 0 14px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.codeInputItem {
+  margin-bottom: 0 !important;
+  min-width: 0;
+}
+
+.checkContainer {
+  margin-top: -4px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #cbd5e1;
+
+  :global {
+    .t-checkbox__label {
+      color: #cbd5e1 !important;
+    }
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .codeRow {
+    grid-template-columns: 1fr;
+  }
+}

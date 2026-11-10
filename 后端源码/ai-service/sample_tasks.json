@@ -1,0 +1,18 @@
+[
+  {
+    "project_name": "ZGEO Demo Alpha",
+    "domain": "example.com",
+    "task_type": "keyword-gap-analysis",
+    "keywords": ["AI可见度优化", "企业智能化改造"],
+    "urls": [],
+    "pasted_text": "ZGEO 是一家面向企业数字化转型的服务品牌，当前官网首页主要介绍咨询能力、实施能力和若干项目经验，但对 AI 可见度优化、可检索知识资产、可信背书、交付流程说明较少。页面存在栏目标题泛化、行业场景描述不够具体、缺少案例指标、缺少团队与方法论说明等问题。"
+  },
+  {
+    "project_name": "ZGEO Demo Beta",
+    "domain": "dashboard.example.com",
+    "task_type": "content-structure-review",
+    "keywords": ["AI解决方案官网", "行业方案展示"],
+    "urls": [],
+    "pasted_text": "Dashboard 站点目前包含产品概览、功能模块、报价咨询入口和联系表单，但缺少完整的解决方案结构。页面对制造业、园区管理、政务协同等场景只做了简单罗列，没有形成问题-方案-成效闭环，也没有显式展示客户评价、部署方式、数据安全承诺和实施步骤。"
+  }
+]

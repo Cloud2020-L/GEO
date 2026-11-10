@@ -1,0 +1,338 @@
+.page {
+  padding: 16px;
+}
+
+.embeddedRoot {
+  min-width: 0;
+}
+
+.permissionCard,
+.pageHero,
+.formCard,
+.accountCard,
+.ledgerCard {
+  border-radius: 8px;
+}
+
+.permissionContent {
+  display: grid;
+  gap: 10px;
+}
+
+.permissionContent h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+}
+
+.permissionContent p {
+  margin: 0;
+  color: var(--td-text-color-secondary);
+  line-height: 22px;
+}
+
+.pageHero {
+  margin-bottom: 16px;
+}
+
+.pageHero :global(.t-card__body) {
+  padding: 22px 28px;
+}
+
+.heroContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.heroCopy h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.heroCopy p,
+.inlineHero p {
+  margin: 8px 0 0;
+  color: var(--td-text-color-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.inlineHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 18px 22px;
+  border: 1px solid #d9e6ff;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+
+.inlineHero h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 28px;
+}
+
+.auditBadge {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: 1px solid #ffe8c2;
+  border-radius: 8px;
+  background: #fffaf1;
+  color: #b65b00;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.adjustmentGrid {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(520px, 1.25fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.formCard,
+.accountCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.formCard :global(.t-card__body),
+.accountCard :global(.t-card__body) {
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  padding: 22px 28px 24px;
+}
+
+.formCard :global(.t-card__body) {
+  display: flex;
+  flex-direction: column;
+}
+
+.adjustForm {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.adjustForm :global(.t-form__item) {
+  margin-bottom: 18px;
+}
+
+.adjustForm :global(.t-form__label) {
+  color: #111827;
+  font-weight: 600;
+}
+
+.formGrid {
+  display: grid;
+  gap: 2px;
+}
+
+.fullControl {
+  width: 100%;
+}
+
+.amountControl {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.amountControl :global(.t-input-number) {
+  width: 176px;
+}
+
+.amountControl > span {
+  color: var(--td-text-color-secondary);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--td-component-border);
+}
+
+.formActions :global(.t-button) {
+  min-width: 112px;
+}
+
+.balancePreview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 18px;
+  border: 1px solid #d9e6ff;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+
+.balancePreview span {
+  display: block;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.balancePreview strong {
+  display: block;
+  margin-top: 4px;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+}
+
+.changePositive,
+.changeNegative {
+  min-width: 104px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 26px;
+}
+
+.changePositive {
+  border: 1px solid #c6f3df;
+  background: #f1fff7;
+  color: #008858;
+}
+
+.changeNegative {
+  border: 1px solid #ffd8dc;
+  background: #fff6f7;
+  color: #d54941;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metricTile {
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--td-component-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.metricTileWide {
+  grid-column: span 2;
+}
+
+.metricTile span {
+  display: block;
+  overflow: hidden;
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metricTile strong {
+  display: block;
+  margin-top: 6px;
+  overflow: hidden;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ledgerCard {
+  margin-top: 16px;
+}
+
+.ledgerCard :global(.t-card__body) {
+  padding: 18px 28px 24px;
+}
+
+.amountPositive {
+  color: #00a870;
+}
+
+.amountNegative,
+.dangerText {
+  color: #e34d59;
+}
+
+@media (max-width: 1280px) {
+  .adjustmentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .inlineHero,
+  .heroContent {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .auditBadge {
+    align-self: flex-start;
+  }
+
+  .formCard :global(.t-card__body),
+  .accountCard :global(.t-card__body),
+  .ledgerCard :global(.t-card__body) {
+    padding: 18px;
+  }
+
+  .balancePreview {
+    grid-template-columns: 1fr;
+  }
+
+  .changePositive,
+  .changeNegative {
+    text-align: left;
+  }
+
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricTileWide {
+    grid-column: auto;
+  }
+}

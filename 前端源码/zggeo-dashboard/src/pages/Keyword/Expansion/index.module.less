@@ -1,0 +1,211 @@
+.page {
+  padding: 24px;
+  min-width: 0;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.heroContent {
+  min-width: 0;
+}
+
+.heroTitle {
+  margin: 12px 0 8px;
+  color: var(--td-text-color-primary);
+  font-size: 24px;
+  line-height: 1.32;
+  overflow-wrap: anywhere;
+}
+
+.heroDesc {
+  color: var(--td-text-color-secondary);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.heroAction,
+.refreshModelButton {
+  flex: 0 0 auto;
+}
+
+.assetPanel,
+.emptyAssetPanel {
+  min-width: 0;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.assetPanel {
+  border: 1px solid var(--td-component-border);
+  background: var(--td-bg-color-container-hover);
+}
+
+.emptyAssetPanel {
+  color: var(--td-text-color-secondary);
+  border: 1px dashed var(--td-component-border);
+}
+
+.assetHint {
+  color: var(--td-text-color-secondary);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(130px, 150px) minmax(150px, 180px) auto;
+  gap: 12px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.settingsGrid > * {
+  min-width: 0;
+}
+
+.generateButton {
+  min-width: 118px;
+  white-space: nowrap;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.metaTags {
+  min-width: 0;
+  flex: 1 1 420px;
+}
+
+.tagWrap {
+  min-width: 0;
+}
+
+.tagWrap :global(.t-tag),
+.metaTags :global(.t-tag) {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.sectionLabel {
+  margin-bottom: 8px;
+  color: var(--td-text-color-secondary);
+  font-size: 12px;
+}
+
+.keywordGroup {
+  width: 100%;
+  min-width: 0;
+}
+
+.keywordGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 10px;
+}
+
+.keywordGroupHeader strong {
+  font-size: 16px;
+}
+
+.keywordGroup :global(.t-table__content) {
+  overflow-x: scroll;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.72) rgba(0, 0, 0, 0.1);
+}
+
+.keywordGroup :global(.t-table__content::-webkit-scrollbar) {
+  height: 10px;
+}
+
+.keywordGroup :global(.t-table__content::-webkit-scrollbar-track) {
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.keywordGroup :global(.t-table__content::-webkit-scrollbar-thumb) {
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.72);
+}
+
+.keywordGroup :global(.t-table table) {
+  min-width: 760px;
+}
+
+.resultActions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .settingsGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(130px, 0.44fr);
+  }
+
+  .generateButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 16px 12px;
+  }
+
+  .hero,
+  .metaRow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .heroAction,
+  .refreshModelButton {
+    width: 100%;
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metaTags {
+    flex-basis: auto;
+  }
+
+  .resultActions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .resultActions :global(.t-button) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 12px 0;
+  }
+
+  .heroTitle {
+    font-size: 22px;
+  }
+}

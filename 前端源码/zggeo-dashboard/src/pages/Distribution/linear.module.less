@@ -1,0 +1,310 @@
+.page {
+  padding: 18px;
+  color: #f8fafc;
+  --td-bg-color-page: #0b0e15;
+  --td-bg-color-container: #12131a;
+  --td-bg-color-container-hover: #171922;
+  --td-bg-color-secondarycontainer: #171922;
+  --td-bg-color-secondarycontainer-hover: #1b1e28;
+  --td-bg-color-component: #171922;
+  --td-bg-color-component-hover: #1b1f2a;
+  --td-bg-color-component-active: #202433;
+  --td-component-border: rgba(255, 255, 255, 0.08);
+  --td-text-color-primary: #f8fafc;
+  --td-text-color-secondary: rgba(226, 232, 240, 0.72);
+  --td-text-color-placeholder: rgba(148, 163, 184, 0.88);
+  --td-text-color-disabled: rgba(148, 163, 184, 0.42);
+  --td-mask-disabled: rgba(7, 10, 17, 0.68);
+}
+
+.heroCard,
+.sectionCard,
+.statCard,
+.itemCard,
+.toolbarCard,
+.dialogCard {
+  background: linear-gradient(180deg, rgba(17, 19, 26, 0.96) 0%, rgba(14, 16, 23, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.heroCard {
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #f8fafc;
+}
+
+.heroDesc {
+  max-width: 960px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.statCard {
+  padding: 14px 16px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.92);
+}
+
+.statValue {
+  margin-top: 8px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.subtleText {
+  color: rgba(203, 213, 225, 0.72);
+}
+
+.mutedText {
+  color: rgba(148, 163, 184, 0.92);
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.itemDesc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(203, 213, 225, 0.72);
+}
+
+.gridAuto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.toolbarRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.metricBox {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.articleDraftPreview {
+  max-height: 520px;
+  overflow: auto;
+  padding: 34px 42px 46px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.page :global(.t-card__body),
+.page :global(.t-card__header),
+.page :global(.t-card__title),
+.page :global(.t-table),
+.page :global(.t-table td),
+.page :global(.t-table th),
+.page :global(.t-table__header-content),
+.page :global(.t-table__content),
+.page :global(.t-form__label),
+.page :global(.t-dialog__header),
+.page :global(.t-dialog__body),
+.page :global(.t-dialog__footer),
+.page :global(.t-tabs__nav-item),
+.page :global(.t-pagination) {
+  color: #e5e7eb;
+}
+
+.page :global(.t-card__header) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page :global(.t-card__title) {
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.page :global(.t-table) {
+  background: transparent !important;
+}
+
+.page :global(.t-table__content),
+.page :global(.t-table__body),
+.page :global(.t-table__empty),
+.page :global(.t-table__footer),
+.page :global(.t-table__header),
+.page :global(.t-table__content-inner),
+.page :global(.t-table table),
+.page :global(.t-table .t-table__content > div) {
+  background: transparent !important;
+}
+
+.page :global(.t-table th),
+.page :global(.t-table td) {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.page :global(.t-table tr:hover td) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.page :global(.t-input),
+.page :global(.t-textarea__inner),
+.page :global(.t-select__wrap),
+.page :global(.t-input-number),
+.page :global(.t-date-picker__input) {
+  background: rgba(13, 16, 24, 0.96);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+.page :global(.t-input__inner),
+.page :global(.t-input input),
+.page :global(.t-textarea__inner),
+.page :global(.t-select__single),
+.page :global(.t-input-number__input),
+.page :global(.t-date-picker__input .t-input__inner) {
+  color: #f8fafc;
+}
+
+.page :global(.t-input input::placeholder),
+.page :global(.t-textarea__inner::placeholder),
+.page :global(.t-input__inner::placeholder) {
+  color: rgba(148, 163, 184, 0.88);
+}
+
+.page :global(.t-button--variant-outline) {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.page :global(.t-button--variant-outline:hover) {
+  border-color: rgba(94, 106, 210, 0.34);
+  background: rgba(94, 106, 210, 0.12);
+}
+
+.page :global(.t-dialog) {
+  background: linear-gradient(180deg, rgba(17, 19, 26, 0.98) 0%, rgba(14, 16, 23, 1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+.page :global(.t-dialog__header),
+.page :global(.t-dialog__footer) {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.page :global(.t-tabs__nav-item.t-is-active) {
+  color: #f8fafc;
+}
+
+.page :global(.t-tabs__content) {
+  padding-top: 12px;
+}
+
+.page :global(.t-tabs__bar) {
+  background: #5e6ad2;
+}
+
+.page :global(.t-pagination__page-number),
+.page :global(.t-pagination__btn) {
+  background: rgba(17, 19, 26, 0.96);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.page :global(.t-pagination__number--current) {
+  background: rgba(94, 106, 210, 0.24);
+  border-color: rgba(94, 106, 210, 0.46);
+}
+
+.page :global(a) {
+  color: #9fb1ff;
+}
+
+.page :global(a:hover) {
+  color: #c2ccff;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 12px;
+  }
+
+  .heroCard,
+  .sectionCard,
+  .statCard,
+  .itemCard,
+  .toolbarCard,
+  .dialogCard {
+    border-radius: 14px;
+  }
+
+  .heroTitle {
+    font-size: 22px;
+    line-height: 1.28;
+    overflow-wrap: anywhere;
+  }
+
+  .heroDesc {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .statsGrid,
+  .gridAuto {
+    grid-template-columns: 1fr;
+  }
+
+  .statValue {
+    font-size: 26px;
+  }
+
+  .toolbarRow {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbarRow > * {
+    max-width: 100%;
+  }
+
+  .articleDraftPreview {
+    max-height: none;
+    padding: 18px;
+    font-size: 14px;
+  }
+
+  .page :global(.t-table table) {
+    min-width: 640px;
+  }
+}

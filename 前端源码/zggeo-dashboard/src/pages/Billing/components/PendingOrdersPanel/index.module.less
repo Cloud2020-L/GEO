@@ -1,0 +1,48 @@
+.panel {
+  border-radius: 8px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.typeTabs {
+  min-width: 0;
+  flex: 1;
+}
+
+.tenantFilter {
+  width: 220px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 136px;
+  border: 1px dashed var(--td-component-border);
+  border-radius: 8px;
+  background: #fafafa;
+  color: var(--td-text-color-secondary);
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tenantFilter {
+    width: 100%;
+  }
+}
